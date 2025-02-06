@@ -1,0 +1,5 @@
+Iteración ciclo principal, distancia
+0, 22400274
+0, 22400173
+2, 22400173
+2, 22400274

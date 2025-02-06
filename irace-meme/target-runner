@@ -1,0 +1,50 @@
+#!/bin/bash
+###############################################################################
+# This script is the command that is executed every run.
+# Check the examples in examples/
+#
+# This script is run in the execution directory (execDir, --exec-dir).
+#
+# PARAMETERS:
+# $1 is the candidate configuration number
+# $2 is the instance ID
+# $3 is the seed
+# $4 is the instance name
+# The rest ($* after `shift 4') are parameters to the run
+#
+# RETURN VALUE:
+# This script should print one numerical value: the cost that must be minimized.
+# Exit with 0 if no error, with 1 in case of error
+###############################################################################
+error() {
+    echo "`TZ=UTC date`: $0: error: $@"
+    exit 1
+}
+
+# This parses the arguments given by irace. Do not touch it!
+CONFIG_ID=$1
+INSTANCE_ID=$2
+SEED=$3
+INSTANCE=$4
+shift 4 || error "Not enough parameters"
+CONFIG_PARAMS=$*
+# End of parsing
+
+# Find our own location.
+# BINDIR=$(dirname "$(readlink -f "$(type -P $0 || echo $0)")")
+
+# Specify the path to python and your script
+EXE="python3 ./Script/memetico.py"
+EXE_PARAMS="${CONFIG_PARAMS} --ruta ${INSTANCE} --semilla ${SEED}"
+
+# Check if python3 is available
+if [ ! -x "$(command -v /usr/bin/python3)" ]; then
+    error "Python3 not found or not executable (pwd: $(pwd))"
+fi
+
+# Run the command and check for errors
+${EXE} ${EXE_PARAMS}
+if [ $? -ne 0 ]; then
+    error "Command failed with exit status $?"
+fi
+

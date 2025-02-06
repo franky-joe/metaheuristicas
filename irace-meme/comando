@@ -1,0 +1,6 @@
+para continuar una ejecucion anterior descomentar logFile = "./irace.Rdata" de escenario
+
+
+iraceResults$scenario$maxExperiments <- 2000  # Incrementa el número máximo de experimentos
+iraceResults$scenario$maxTime <- 720000       # Incrementa el tiempo máximo disponible
+iraceResults$state$remainingBudget <- 1000    # Ajusta el presupuesto restante
