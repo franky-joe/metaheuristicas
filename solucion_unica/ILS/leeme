@@ -1,0 +1,13 @@
+Antes de ejecutar construir las matrices de distancias con el script.
+
+Ejecutar con:
+python3 ILS.py --ruta_matrix '../Instancias/matrix-uy734.txt' \
+                      --nivel_perturbacion 0.0085 \
+                      --tipo_de_perturbacion 1 \
+                      --semilla 12345 \
+                      --max_evaluaciones 1000000 \
+                      --max_tamaño_vecindario 10000 \
+                      --porcentaje_mejora_LS 0.001 \
+                      --dir_log_out './logs' \
+                      --print_progreso True
+
